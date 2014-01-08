@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140108203657) do
 
   create_table "users", force: true do |t|
     t.string   "uid"
+    
     t.string   "nickname"
     t.string   "name"
     t.string   "image_url"
