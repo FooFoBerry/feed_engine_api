@@ -11,4 +11,5 @@ gem 'pg'
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec', require: false
+  gem 'factory_girl_rails'
 end
