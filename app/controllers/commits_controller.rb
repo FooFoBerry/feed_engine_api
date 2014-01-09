@@ -5,4 +5,9 @@ class CommitsController < ApplicationController
     render json: commits
   end
 
+  def show
+    commit = Commit.find(params[:id])
+    render json: commit
+  end
+
 end

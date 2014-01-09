@@ -19,4 +19,19 @@ describe "Commits API" do
                                             "765qwe"])
     end
   end
+
+  describe "GET /projects/:project_id/commits/:id" do
+    it "returns the right commit" do
+      commit = FactoryGirl.create :commit, commit_hash: "qwer1", project_id: 1
+
+      get "/projects/1/commits/#{commit.id}"
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      commit_hash = body["commit_hash"]
+
+      expect(commit_hash).to eq("qwer1")
+    end
+  end
+
 end
