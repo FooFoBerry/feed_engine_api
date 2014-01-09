@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   def create
     project = Project.new(params[:project])
     if project.save
-      render :nothing => true, :status => 201
+      render json: project, :status => 201
     else
       render :nothing => true, :status => 422
     end

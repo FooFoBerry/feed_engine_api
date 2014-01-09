@@ -50,6 +50,12 @@ describe "Projects API" do
         expect {
           post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
         }.to change{Project.count}.by(1)
+
+        body = JSON.parse(response.body)
+        body["id"].should be_kind_of(Fixnum)
+        body["name"].should eq("FooFoo")
+        body["user_id"].should eq(123)
+        binding.pry
       end
     end
 
