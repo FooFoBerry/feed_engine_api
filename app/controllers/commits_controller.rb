@@ -13,8 +13,11 @@ class CommitsController < ApplicationController
   def create
     project = Project.find(params[:project_id])
     commit = project.commits.new(params[:commit])
-    commit.save
-    render :nothing => true, :status => 201
+    if commit.save
+      render :nothing => true, :status => 201
+    else
+      render :nothing => true, :status => 422
+    end
   end
 
 end

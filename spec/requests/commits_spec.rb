@@ -56,15 +56,21 @@ describe "Commits API" do
 
     describe "with invalid params" do
       before :each do
-        #
+        @project = FactoryGirl.create(:project)
+        @commit_params = FactoryGirl.build(:commit, :commit_hash => "").as_json
       end
 
       it "responds with 422" do
-        #
+        post "/projects/#{@project.id}/commits", { :commit => @commit_params },
+                                                 { "HTTP_ACCEPT" => "application/json" }
+        expect(response.status).to eq 422
       end
 
       it "creates a new project given valid data" do
-        #
+        expect {
+          post "/projects/#{@project.id}/commits", { :commit => @commit_params },
+                                                   { "HTTP_ACCEPT" => "application/json" }
+        }.to change{Commit.count}.by(0)
       end
     end
   end
