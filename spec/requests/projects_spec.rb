@@ -3,10 +3,11 @@ require 'spec_helper'
 describe "Projects API" do
   describe "GET /projects" do
     it "returns all the projects" do
-      FactoryGirl.create :project, name: "Meecrosoft"
-      FactoryGirl.create :project, name: "Weendows"
+      FactoryGirl.create :project, name: "Meecrosoft", user_id: 123
+      FactoryGirl.create :project, name: "Weendows", user_id: 123
+      FactoryGirl.create :project, name: "Arch", user_id: 321
 
-      get "/projects", {}, { "HTTP_ACCEPT" => "application/json" }
+      get "/projects?user_id=123", {}, { "HTTP_ACCEPT" => "application/json" }
 
       expect(response.status).to eq 200
 

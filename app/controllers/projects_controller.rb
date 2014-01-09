@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
 
   def index
-    render json: Project.all
+    user_id = params[:user_id]
+    render json: Project.where(:user_id => user_id)
   end
 
   def show
