@@ -17,4 +17,20 @@ describe "Projects API" do
                                              "Weendows"])
     end
   end
+
+  describe "GET /projects/:id" do
+    it "returns the right project" do
+      FactoryGirl.create :project
+      project = FactoryGirl.create :project, name: "Ben"
+
+      get "/projects/#{project.id}", {}, { "HTTP_ACCEPT" => "application/json" }
+
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      project_title = body["name"]
+
+      expect(project_title).to eq("Ben")
+    end
+  end
 end
