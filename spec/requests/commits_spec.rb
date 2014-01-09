@@ -42,15 +42,21 @@ describe "Commits API" do
       end
 
       it "responds with 201" do
-        post "/projects/#{@project.id}/commits", { :commit => @commit_params }, { "HTTP_ACCEPT" => "application/json" }
+        post "/projects/#{@project.id}/commits", { :commit => @commit_params },
+                                                 { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
         expect(Commit.last.project_id).to eq(@project.id)
       end
 
       it "creates a new commit given valid data" do
         expect {
-          post "/projects/#{@project.id}/commits", { :commit => @commit_params }, { "HTTP_ACCEPT" => "application/json" }
+          post "/projects/#{@project.id}/commits", { :commit => @commit_params },
+                                                   { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(1)
+
+        body = JSON.parse(response.body)
+        body["id"].should be_kind_of(Fixnum)
+        body["project_id"].should eq(@project.id)
       end
     end
 
@@ -71,6 +77,9 @@ describe "Commits API" do
           post "/projects/#{@project.id}/commits", { :commit => @commit_params },
                                                    { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(0)
+
+        body = JSON.parse(response.body)
+        body["errors"].should include("commit_hash")
       end
     end
   end

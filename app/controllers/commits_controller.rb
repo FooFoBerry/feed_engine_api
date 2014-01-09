@@ -14,10 +14,17 @@ class CommitsController < ApplicationController
     project = Project.find(params[:project_id])
     commit = project.commits.new(params[:commit])
     if commit.save
-      render :nothing => true, :status => 201
+      render json: commit, :status => 201
     else
-      render :nothing => true, :status => 422
+      render json: commit_errors(commit), :status => 422
     end
+  end
+
+  private
+
+  def commit_errors(commit)
+    messages = commit.errors.messages
+    errors_hash = { "errors" => messages }
   end
 
 end
