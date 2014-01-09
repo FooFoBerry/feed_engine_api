@@ -130,6 +130,7 @@ PLATFORMS
 DEPENDENCIES
   guard-rspec
   pg
+  pry
   rails (= 4.0.2)
   rails-api
   rspec-rails
