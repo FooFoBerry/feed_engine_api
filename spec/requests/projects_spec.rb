@@ -33,4 +33,40 @@ describe "Projects API" do
       expect(project_title).to eq("Ben")
     end
   end
+
+  describe "POST /projects" do
+    describe "with valid params" do
+      before :each do
+        @project_params = FactoryGirl.build(:project).as_json
+      end
+
+      it "responds with 201" do
+        post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+        expect(response.status).to eq 201
+      end
+
+      it "creates a new project given valid data" do
+        expect {
+          post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+        }.to change{Project.count}.by(1)
+      end
+    end
+
+    describe "with invalid param" do
+      before :each do
+        @project_params = FactoryGirl.build(:project, :name => "").as_json
+      end
+
+      it "responds with 422" do
+        post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+        expect(response.status).to eq 422
+      end
+
+      it "creates a new project given valid data" do
+        expect {
+          post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+        }.to change{Project.count}.by(0)
+      end
+    end
+  end
 end
