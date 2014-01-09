@@ -10,4 +10,11 @@ class CommitsController < ApplicationController
     render json: commit
   end
 
+  def create
+    project = Project.find(params[:project_id])
+    commit = project.commits.new(params[:commit])
+    commit.save
+    render :nothing => true, :status => 201
+  end
+
 end
