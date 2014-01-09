@@ -55,7 +55,6 @@ describe "Projects API" do
         body["id"].should be_kind_of(Fixnum)
         body["name"].should eq("FooFoo")
         body["user_id"].should eq(123)
-        binding.pry
       end
     end
 
@@ -73,6 +72,9 @@ describe "Projects API" do
         expect {
           post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
         }.to change{Project.count}.by(0)
+
+        body = JSON.parse(response.body)
+        body["errors"].should include("name")
       end
     end
   end

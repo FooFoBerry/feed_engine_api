@@ -14,8 +14,15 @@ class ProjectsController < ApplicationController
     if project.save
       render json: project, :status => 201
     else
-      render :nothing => true, :status => 422
+      render json: project_errors(project), :status => 422
     end
+  end
+
+  private
+
+  def project_errors(project)
+    messages = project.errors.messages
+    errors_hash = { "errors" => messages }
   end
 
 end
