@@ -22,8 +22,11 @@ describe "Commits API" do
   end
 
   describe "GET /projects/:project_id/commits/:id" do
-    xit "returns the right commit" do
-      commit = FactoryGirl.create :commit, commit_hash: "qwer1", project_id: 1
+    it "returns the right commit" do
+      project = FactoryGirl.create :project
+      repo = FactoryGirl.create :repo
+      project.repos << repo
+      commit = FactoryGirl.create :commit, commit_hash: "qwer1", repo: repo
 
       get "/projects/1/commits/#{commit.id}"
       expect(response.status).to eq 200
