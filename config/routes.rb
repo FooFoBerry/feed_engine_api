@@ -4,7 +4,7 @@ FoofoberryApi::Application.routes.draw do
     resources :repos,   only: [:index, :show, :create]
   end
 
-  resources :repos do
+  resources :repos, only: [:show]  do
     resources :commits, only: [:create]
   end
 end
