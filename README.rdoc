@@ -1,5 +1,5 @@
 === FeedEngine
 
-JSON API for the [FeedEngine Project](http://tutorials.jumpstartlab.com/projects/feed_engine/feed_engine.html)
+JSON API for the FeedEngine Project, http://tutorials.jumpstartlab.com/projects/feed_engine/feed_engine.html
 
 Run tests with `rspec`
