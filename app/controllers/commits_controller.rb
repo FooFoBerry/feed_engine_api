@@ -1,7 +1,8 @@
 class CommitsController < ApplicationController
 
   def index
-    commits = Commit.where(:project_id => params[:project_id])
+    project = Project.find(params[:project_id])
+    commits = project.repos.map(&:commits).flatten # needs optimization
     render json: commits
   end
 
