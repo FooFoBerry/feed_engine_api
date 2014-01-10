@@ -72,7 +72,7 @@ describe "Commits API" do
         expect(response.status).to eq 422
       end
 
-      it "creates a new project given valid data" do
+      it "rejects a new project given invalid data" do
         expect {
           post "/projects/#{@project.id}/commits", { :commit => @commit_params },
                                                    { "HTTP_ACCEPT" => "application/json" }
