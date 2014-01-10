@@ -20,4 +20,20 @@ describe "Repos API" do
                                     "http://gh.com/123"])
     end
   end
+
+  describe "GET /projects/:project_id/repos/:id" do
+    it "returns the right repo" do
+      repo = FactoryGirl.create :repo, github_url: "http://gh.com/1"
+      project = FactoryGirl.create :project, name: "Biggy"
+      project.repos << repo
+
+      get "/projects/#{project.id}/repos/#{repo.id}"
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      repo = body["github_url"]
+
+      expect(repo).to eq("http://gh.com/1")
+    end
+  end
 end
