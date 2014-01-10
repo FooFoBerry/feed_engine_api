@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :get_project, only: [:index, :show]
+  before_action :get_project, only: [:index, :show, :create]
 
   def index
     repos = @project.repos
@@ -9,6 +9,11 @@ class ReposController < ApplicationController
   def show
     repo = @project.repos.find(params[:id])
     render json: repo
+  end
+
+  def create
+    @project.repos.create(params[:repo])
+    render json: "foo", :status => 201
   end
 
   private

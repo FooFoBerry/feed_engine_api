@@ -36,4 +36,31 @@ describe "Repos API" do
       expect(repo).to eq("http://gh.com/1")
     end
   end
+
+  describe "POST /projects/:project_id/repos" do
+    describe "with valid params" do
+      before :each do
+        @project = FactoryGirl.create(:project)
+        @repo_params = FactoryGirl.build(:repo).as_json
+      end
+
+      it "responds with 201" do
+        post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+                                               { "HTTP_ACCEPT" => "application/json" }
+        expect(response.status).to eq 201
+      end
+
+      it "create a new repo given valid data" do
+        expect {
+          post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+                                                 { "HTTP_ACCEPT" => "application/json" }
+        }.to change{Repo.count}.by(1)
+      end
+    end
+
+    describe "with invalid params" do
+
+    end
+
+  end
 end
