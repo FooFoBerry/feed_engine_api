@@ -1,0 +1,18 @@
+require 'spec_helper'
+
+describe Project do
+  describe "it should not be valid" do
+    it "without a name" do
+      FactoryGirl.build(:project, :name => "").should_not be_valid
+    end
+  end
+
+  describe "project_repos association" do
+    it "has project_repos" do
+      project = FactoryGirl.create(:project)
+      repo = FactoryGirl.create(:repo, :github_url => "gh.com/kevin")
+      project.repos << repo
+      expect(project.repos.map(&:github_url)).to match_array(["gh.com/kevin"])
+    end
+  end
+end
