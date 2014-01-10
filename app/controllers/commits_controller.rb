@@ -11,8 +11,8 @@ class CommitsController < ApplicationController
   end
 
   def create
-    project = Project.find(params[:project_id])
-    commit = project.commits.new(params[:commit])
+    repo = Repo.find(params[:repo_id])
+    commit = repo.commits.new(params[:commit])
     if commit.save
       render json: commit, :status => 201
     else
