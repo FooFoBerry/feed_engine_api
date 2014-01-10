@@ -59,8 +59,26 @@ describe "Repos API" do
     end
 
     describe "with invalid params" do
+      before :each do
+        @project = FactoryGirl.create(:project)
+        @repo_params = FactoryGirl.build(:repo, github_url: "").as_json
+      end
 
+      it "responds with 422" do
+        post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+                                                 { "HTTP_ACCEPT" => "application/json" }
+        expect(response.status).to eq 422
+      end
+
+      it "rejects repo with invalid data" do
+        expect {
+          post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+                                                   { "HTTP_ACCEPT" => "application/json" }
+        }.to change{Repo.count}.by(0)
+
+        body = JSON.parse(response.body)
+        body["errors"].should include("github_url")
+      end
     end
-
   end
 end

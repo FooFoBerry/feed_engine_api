@@ -12,14 +12,23 @@ class ReposController < ApplicationController
   end
 
   def create
-    @project.repos.create(params[:repo])
-    render json: "foo", :status => 201
+    repo = @project.repos.new(params[:repo])
+    if repo.save
+      render json: repo, :status => 201
+    else
+      render json: repo_errors(repo), :status => 422
+    end
   end
 
   private
 
   def get_project
     @project = Project.find(params[:project_id])
+  end
+
+  def repo_errors(repo)
+    messages = repo.errors.messages
+    errors_hash = { "errors" => messages }
   end
 
 end
