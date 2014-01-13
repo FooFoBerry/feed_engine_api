@@ -10,7 +10,7 @@ describe "Repos API" do
       project.repos << repo
       project.repos << repo2
 
-      get "projects/#{project.id}/repos"
+      get "/api/v1/projects/#{project.id}/repos"
 
       expect(response.status).to eq 200
       body = JSON.parse(response.body)
@@ -27,7 +27,7 @@ describe "Repos API" do
       project = FactoryGirl.create :project, name: "Biggy"
       project.repos << repo
 
-      get "/projects/#{project.id}/repos/#{repo.id}"
+      get "/api/v1/projects/#{project.id}/repos/#{repo.id}"
       expect(response.status).to eq 200
 
       body = JSON.parse(response.body)
@@ -45,14 +45,14 @@ describe "Repos API" do
       end
 
       it "responds with 201" do
-        post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+        post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
       end
 
       it "create a new repo given valid data" do
         expect {
-          post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+          post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                  { "HTTP_ACCEPT" => "application/json" }
         }.to change{Repo.count}.by(1)
       end
@@ -65,14 +65,14 @@ describe "Repos API" do
       end
 
       it "responds with 422" do
-        post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+        post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                  { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "rejects repo with invalid data" do
         expect {
-          post "/projects/#{@project.id}/repos", { :repo => @repo_params },
+          post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                    { "HTTP_ACCEPT" => "application/json" }
         }.to change{Repo.count}.by(0)
 

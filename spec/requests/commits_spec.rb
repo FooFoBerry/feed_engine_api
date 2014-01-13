@@ -10,7 +10,7 @@ describe "Commits API" do
       commit2 = FactoryGirl.create :commit, commit_hash: "765qwe", repo: repo
       commit3 = FactoryGirl.create :commit, commit_hash: "foobar"
 
-      get "/projects/#{project.id}/commits"
+      get "/api/v1/projects/#{project.id}/commits"
 
       expect(response.status).to eq 200
       body = JSON.parse(response.body)
@@ -28,7 +28,7 @@ describe "Commits API" do
       project.repos << repo
       commit = FactoryGirl.create :commit, commit_hash: "qwer1", repo: repo
 
-      get "/projects/1/commits/#{commit.id}"
+      get "/api/v1/projects/1/commits/#{commit.id}"
       expect(response.status).to eq 200
 
       body = JSON.parse(response.body)
@@ -46,7 +46,7 @@ describe "Commits API" do
       end
 
       it "responds with 201" do
-        post "/repos/#{@repo.id}/commits", { :commit => @commit_params },
+        post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
                                            { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
         expect(Commit.last.repo_id).to eq(@repo.id)
@@ -54,7 +54,7 @@ describe "Commits API" do
 
       it "creates a new commit given valid data" do
         expect {
-          post "/repos/#{@repo.id}/commits", { :commit => @commit_params },
+          post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
                                                 { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(1)
 
@@ -71,14 +71,14 @@ describe "Commits API" do
       end
 
       it "responds with 422" do
-        post "/repos/#{@repo.id}/commits", { :commit => @commit_params },
+        post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
                                            { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "rejects a new project given invalid data" do
         expect {
-          post "/repos/#{@repo.id}/commits", { :commit => @commit_params },
+          post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
                                              { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(0)
 
