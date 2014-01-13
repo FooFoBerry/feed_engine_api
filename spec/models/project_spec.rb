@@ -1,9 +1,21 @@
 require 'spec_helper'
 
 describe Project do
+
+  describe "it should be valid" do
+    it "with the correct attributes" do
+      p = FactoryGirl.build(:project, :name => "FooFoBerry", :user_id => 1)
+      expect(p).to be_valid
+    end
+  end
+
   describe "it should not be valid" do
     it "without a name" do
       FactoryGirl.build(:project, :name => "").should_not be_valid
+    end
+
+    it "without a user_id" do
+      FactoryGirl.build(:project, :user_id => nil).should_not be_valid
     end
   end
 
