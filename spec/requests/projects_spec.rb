@@ -7,7 +7,7 @@ describe "Projects API" do
       FactoryGirl.create :project, name: "Weendows", user_id: 123
       FactoryGirl.create :project, name: "Arch", user_id: 321
 
-      get "/projects?user_id=123", {}, { "HTTP_ACCEPT" => "application/json" }
+      get "/api/v1/projects?user_id=123", {}, { "HTTP_ACCEPT" => "application/json" }
 
       expect(response.status).to eq 200
 
