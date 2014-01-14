@@ -4,8 +4,8 @@ describe "Repos API" do
   describe "GET /projects/:project_id/repos" do
     it "returns all the project's repos" do
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/abc"
-      repo2 = FactoryGirl.create :repo, github_url: "http://gh.com/123"
-      repo3 = FactoryGirl.create :repo, github_url: "http://gh.com/def"
+      repo2 = FactoryGirl.create :repo, github_url: "http://gh.com/123", gh_repo_id: 12345
+      repo3 = FactoryGirl.create :repo, github_url: "http://gh.com/def", gh_repo_id: 23456
       project = FactoryGirl.create :project, name: "Biggy"
       project.repos << repo
       project.repos << repo2
