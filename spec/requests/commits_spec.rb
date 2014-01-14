@@ -41,7 +41,7 @@ describe "Commits API" do
   describe "POST /commits" do
     describe "with valid params" do
       before :each do
-        @repo = FactoryGirl.create(:repo) # add gh_repo_id and set to below
+        @repo = FactoryGirl.create(:repo, gh_repo_id: 15889813)
         @commit_params =
                         {
                           :commit_id => "96dd704dc8770624e5da9082498c531edf0aef4a",
@@ -74,8 +74,16 @@ describe "Commits API" do
 
     describe "with invalid params" do
       before :each do
-        @repo = FactoryGirl.create(:repo) # update to have gh_repo_id
-        @commit_params = FactoryGirl.build(:commit, :commit_hash => "").as_json # update params
+        @repo = FactoryGirl.create(:repo, gh_repo_id: 15889813)
+        @commit_params =
+                        {
+                          :commit_id => "",
+                          :timestamp => "2014-01-13T18:45:47-08:00",
+                          :repository => {
+                            :id  => "15889813",
+                            :url => "https://github.com/thewatts/testing-callbacks"
+                          }
+                        }
       end
 
       it "responds with 422" do
