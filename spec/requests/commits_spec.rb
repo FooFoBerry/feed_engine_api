@@ -38,24 +38,32 @@ describe "Commits API" do
     end
   end
 
-  describe "POST /repos/:repo_id/commits" do
+  describe "POST /commits" do
     describe "with valid params" do
       before :each do
-        @repo = FactoryGirl.create(:repo)
-        @commit_params = FactoryGirl.build(:commit).as_json(:except => [:repo_id])
+        @repo = FactoryGirl.create(:repo) # add gh_repo_id and set to below
+        @commit_params =
+                        {
+                          :commit_id => "96dd704dc8770624e5da9082498c531edf0aef4a",
+                          :timestamp => "2014-01-13T18:45:47-08:00",
+                          :repository => {
+                            :id  => "15889813",
+                            :url => "https://github.com/thewatts/testing-callbacks"
+                          }
+                        }
       end
 
       it "responds with 201" do
-        post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
-                                           { "HTTP_ACCEPT" => "application/json" }
+        post "/api/v1/commits", { :commit => @commit_params },
+                                { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
-        expect(Commit.last.repo_id).to eq(@repo.id)
+        expect(Commit.last.repo_id).to eq(@repo.id) # update controller to look up repo
       end
 
       it "creates a new commit given valid data" do
         expect {
-          post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
-                                                { "HTTP_ACCEPT" => "application/json" }
+          post "/api/v1/commits", { :commit => @commit_params },
+                                  { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(1)
 
         body = JSON.parse(response.body)
@@ -66,20 +74,20 @@ describe "Commits API" do
 
     describe "with invalid params" do
       before :each do
-        @repo = FactoryGirl.create(:repo)
-        @commit_params = FactoryGirl.build(:commit, :commit_hash => "").as_json
+        @repo = FactoryGirl.create(:repo) # update to have gh_repo_id
+        @commit_params = FactoryGirl.build(:commit, :commit_hash => "").as_json # update params
       end
 
       it "responds with 422" do
-        post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
-                                           { "HTTP_ACCEPT" => "application/json" }
+        post "/api/v1/commits", { :commit => @commit_params },
+                                { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "rejects a new project given invalid data" do
         expect {
-          post "/api/v1/repos/#{@repo.id}/commits", { :commit => @commit_params },
-                                             { "HTTP_ACCEPT" => "application/json" }
+          post "/api/v1/commits", { :commit => @commit_params },
+                                  { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(0)
 
         body = JSON.parse(response.body)
