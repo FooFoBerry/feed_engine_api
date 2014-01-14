@@ -7,7 +7,7 @@ describe "Projects API" do
       FactoryGirl.create :project, name: "Weendows", user_id: 123
       FactoryGirl.create :project, name: "Arch", user_id: 321
 
-      get "/projects?user_id=123", {}, { "HTTP_ACCEPT" => "application/json" }
+      get "/api/v1/projects?user_id=123", {}, { "HTTP_ACCEPT" => "application/json" }
 
       expect(response.status).to eq 200
 
@@ -24,7 +24,7 @@ describe "Projects API" do
       FactoryGirl.create :project
       project = FactoryGirl.create :project, name: "Ben"
 
-      get "/projects/#{project.id}", {}, { "HTTP_ACCEPT" => "application/json" }
+      get "/api/v1/projects/#{project.id}", {}, { "HTTP_ACCEPT" => "application/json" }
 
       expect(response.status).to eq 200
 
@@ -42,13 +42,13 @@ describe "Projects API" do
       end
 
       it "responds with 201" do
-        post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+        post "/api/v1/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
       end
 
       it "creates a new project given valid data" do
         expect {
-          post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+          post "/api/v1/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
         }.to change{Project.count}.by(1)
 
         body = JSON.parse(response.body)
@@ -64,13 +64,13 @@ describe "Projects API" do
       end
 
       it "responds with 422" do
-        post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+        post "/api/v1/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "creates a new project given valid data" do
         expect {
-          post "/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
+          post "/api/v1/projects", { :project => @project_params }, { "HTTP_ACCEPT" => "application/json" }
         }.to change{Project.count}.by(0)
 
         body = JSON.parse(response.body)
