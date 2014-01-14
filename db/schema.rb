@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110072735) do
+ActiveRecord::Schema.define(version: 20140114081854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,17 @@ ActiveRecord::Schema.define(version: 20140110072735) do
     t.integer  "repo_id"
   end
 
+  add_index "commits", ["repo_id"], name: "index_commits_on_repo_id", using: :btree
+
   create_table "project_repos", force: true do |t|
     t.integer  "project_id"
     t.integer  "repo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "project_repos", ["project_id"], name: "index_project_repos_on_project_id", using: :btree
+  add_index "project_repos", ["repo_id"], name: "index_project_repos_on_repo_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.integer  "user_id"
@@ -39,10 +44,15 @@ ActiveRecord::Schema.define(version: 20140110072735) do
     t.datetime "updated_at"
   end
 
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
   create_table "repos", force: true do |t|
     t.string   "github_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gh_repo_id"
   end
+
+  add_index "repos", ["gh_repo_id"], name: "index_repos_on_gh_repo_id", unique: true, using: :btree
 
 end
