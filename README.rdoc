@@ -1,5 +1,7 @@
 === FeedEngine
 
+[![Code Climate](https://codeclimate.com/repos/52d802d1e30ba01eff009e08/badges/53ca82c9a5f3ece49576/gpa.png)](https://codeclimate.com/repos/52d802d1e30ba01eff009e08/feed)
+
 JSON API for the FeedEngine Project, http://tutorials.jumpstartlab.com/projects/feed_engine/feed_engine.html
 
 Run tests with `rspec`
