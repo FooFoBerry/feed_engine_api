@@ -54,7 +54,7 @@ describe "Commits API" do
       end
 
       it "responds with 201" do
-        post "/api/v1/commits", { :commit => @commit_params },
+        post "/api/v1/commits", @commit_params,
                                 { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
         expect(Commit.last.repo_id).to eq(@repo.id) # update controller to look up repo
@@ -62,7 +62,7 @@ describe "Commits API" do
 
       it "creates a new commit given valid data" do
         expect {
-          post "/api/v1/commits", { :commit => @commit_params },
+          post "/api/v1/commits", @commit_params,
                                   { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(1)
 
@@ -87,14 +87,14 @@ describe "Commits API" do
       end
 
       it "responds with 422" do
-        post "/api/v1/commits", { :commit => @commit_params },
+        post "/api/v1/commits", @commit_params,
                                 { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "rejects a new project given invalid data" do
         expect {
-          post "/api/v1/commits", { :commit => @commit_params },
+          post "/api/v1/commits", @commit_params,
                                   { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(0)
 
