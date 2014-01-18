@@ -31,11 +31,11 @@ module Api
       end
 
       def repo_id_param
-        params[:commit][:repository][:id]
+        params[:repository][:id]
       end
 
       def commit_id_param
-        params[:commit][:commit_id]
+        params[:commit_id]
       end
 
     end
