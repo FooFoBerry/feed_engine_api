@@ -12,10 +12,9 @@ class GithubAPI
   end
 
   def gh_repo_id
-    response = Faraday.get("https://api.github.com/repos/#{username}/#{repo_name}")
+    response = Faraday.get("https://api.github.com/repos/#{username}/#{repo_name}?client_id=ENV['GH_APP_CLIENT_ID']&client_secret=ENV['GH_CLIENT_SECRET']")
     body = JSON.parse(response.body)
-    puts body
-    body[:id]
+    body["id"]
   end
 
   def username

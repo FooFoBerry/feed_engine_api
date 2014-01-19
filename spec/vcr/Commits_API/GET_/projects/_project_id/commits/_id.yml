@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/srt32/FE
+    uri: https://api.github.com/repos/srt32/FE?client_id=ENV%5B%27GH_APP_CLIENT_ID%27%5D&client_secret=ENV%5B%27GH_CLIENT_SECRET%27%5D
     body:
       encoding: US-ASCII
       string: ''
@@ -15,13 +15,13 @@ http_interactions:
       - '*/*'
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 404
+      message: Not Found
     headers:
       server:
       - GitHub.com
       date:
-      - Sun, 19 Jan 2014 02:55:57 GMT
+      - Sun, 19 Jan 2014 04:44:08 GMT
       content-type:
       - application/json; charset=utf-8
       transfer-encoding:
@@ -29,13 +29,13 @@ http_interactions:
       connection:
       - close
       status:
-      - 403 Forbidden
+      - 404 Not Found
       x-ratelimit-limit:
       - '60'
       x-ratelimit-remaining:
-      - '0'
+      - '27'
       x-ratelimit-reset:
-      - '1390103757'
+      - '1390106723'
       x-github-media-type:
       - github.beta
       x-content-type-options:
@@ -48,14 +48,12 @@ http_interactions:
       access-control-allow-origin:
       - '*'
       x-github-request-id:
-      - 32C9BB81:7D3D:1B8780:52DB3EBD
+      - 32C9BB81:7D2A:A0BC56:52DB5818
       content-encoding:
       - gzip
     body:
       encoding: UTF-8
-      string: '{"message":"API rate limit exceeded for 50.201.187.129. (But here''s
-        the good news: Authenticated requests get a higher rate limit. Check out the
-        documentation for more details.)","documentation_url":"http://developer.github.com/v3/#rate-limiting"}'
+      string: '{"message":"Not Found","documentation_url":"http://developer.github.com/v3"}'
     http_version: '1.1'
-  recorded_at: Sun, 19 Jan 2014 02:55:57 GMT
+  recorded_at: Sun, 19 Jan 2014 04:44:07 GMT
 recorded_with: VCR 2.8.0

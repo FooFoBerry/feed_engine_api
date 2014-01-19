@@ -31,6 +31,12 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.1.0)
@@ -69,6 +75,7 @@ GEM
     guard-rspec (4.2.3)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    highline (1.6.20)
     hike (1.2.3)
     hirb (0.7.1)
     i18n (0.6.9)
@@ -97,6 +104,13 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     multipart-post (2.0.0)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     pg (0.17.1)
     polyglot (0.3.3)
     posix-spawn (0.3.8)
@@ -162,6 +176,8 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    rvm-capistrano (1.5.1)
+      capistrano (~> 2.15.4)
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -188,6 +204,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano
   factory_girl_rails (~> 4.0)
   fakeweb
   faraday
@@ -197,4 +214,5 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails-api
   rspec-rails
+  rvm-capistrano
   vcr

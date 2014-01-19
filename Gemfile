@@ -8,6 +8,8 @@ gem 'rails-api'
 # Use Postgresql as the database for Active Record
 gem 'pg'
 gem 'faraday'
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 group :development, :test do
   gem 'rspec-rails'
