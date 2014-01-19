@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Commits API" do
   describe "GET /projects/:project_id/commits" do
+    use_vcr_cassette
+
     it "returns all the project's commits" do
       project = FactoryGirl.create :project
       repo = FactoryGirl.create :repo
@@ -22,6 +24,8 @@ describe "Commits API" do
   end
 
   describe "GET /projects/:project_id/commits/:id" do
+    use_vcr_cassette
+
     it "returns the right commit" do
       project = FactoryGirl.create :project
       repo = FactoryGirl.create :repo
@@ -39,6 +43,8 @@ describe "Commits API" do
   end
 
   describe "POST /commits" do
+    use_vcr_cassette
+
     describe "with valid params" do
       before :each do
         @repo = FactoryGirl.create(:repo, gh_repo_id: 15889813)

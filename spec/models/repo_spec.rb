@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe Repo do
   describe "it should not be valid" do
+    use_vcr_cassette
     it "without a github_url" do
       FactoryGirl.build(:repo, :github_url => "").should_not be_valid
     end
   end
 
   describe "commit association" do
+    use_vcr_cassette
     it "has commits" do
       repo = FactoryGirl.create(:repo)
       FactoryGirl.create(:commit, commit_hash: "1234", repo_id: repo.id)
@@ -23,12 +25,11 @@ describe Repo do
   end
 
   describe "gh_repo_id" do
+    use_vcr_cassette
     it "is populated post_create" do
-      VCR.use_cassette "set_github_repo_id_repo_spec" do
-        repo = FactoryGirl.create(:repo, :github_url => "https://github.com/FooFoBerry/github_notification_dummy_app",
-                                          :gh_repo_id => nil)
-        expect(repo.gh_repo_id).to eq 16033562
-      end
+      repo = FactoryGirl.create(:repo, :github_url => "https://github.com/FooFoBerry/github_notification_dummy_app",
+                                :gh_repo_id => nil)
+      expect(repo.gh_repo_id).to eq 16033562
     end
   end
 end
