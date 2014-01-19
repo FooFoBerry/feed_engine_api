@@ -23,11 +23,12 @@ describe Repo do
   end
 
   describe "gh_repo_id" do
-    # :TODO: wrap in VCR
     it "is populated post_create" do
-      repo = FactoryGirl.create(:repo, :github_url => "https://github.com/FooFoBerry/github_notification_dummy_app",
-                                        :gh_repo_id => nil)
-      expect(repo.gh_repo_id).to eq 16033562
+      VCR.use_cassette "set_github_repo_id_repo_spec" do
+        repo = FactoryGirl.create(:repo, :github_url => "https://github.com/FooFoBerry/github_notification_dummy_app",
+                                          :gh_repo_id => nil)
+        expect(repo.gh_repo_id).to eq 16033562
+      end
     end
   end
 end

@@ -14,4 +14,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'jazz_hands'
   gem 'factory_girl_rails', "~> 4.0"
+  gem 'vcr'
+  gem 'fakeweb'
 end
