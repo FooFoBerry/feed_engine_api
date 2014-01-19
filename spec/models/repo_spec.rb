@@ -21,4 +21,12 @@ describe Repo do
       expect(repo.projects.map(&:name)).to match_array(["FooFoo"])
     end
   end
+
+  describe "gh_repo_id" do
+    it "is populated post_create" do
+      repo = FactoryGirl.create(:repo, :github_url => "https://github.com/FooFoBerry/github_notification_dummy_app",
+                                        :gh_repo_id => nil)
+      expect(repo.gh_repo_id).to eq 16033562
+    end
+  end
 end
