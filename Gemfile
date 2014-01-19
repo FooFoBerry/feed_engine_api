@@ -7,6 +7,7 @@ gem 'rails-api'
 
 # Use Postgresql as the database for Active Record
 gem 'pg'
+gem 'faraday'
 
 group :development, :test do
   gem 'rspec-rails'

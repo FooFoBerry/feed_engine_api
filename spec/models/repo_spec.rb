@@ -23,6 +23,7 @@ describe Repo do
   end
 
   describe "gh_repo_id" do
+    # :TODO: wrap in VCR
     it "is populated post_create" do
       repo = FactoryGirl.create(:repo, :github_url => "https://github.com/FooFoBerry/github_notification_dummy_app",
                                         :gh_repo_id => nil)
