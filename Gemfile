@@ -7,10 +7,15 @@ gem 'rails-api'
 
 # Use Postgresql as the database for Active Record
 gem 'pg'
+gem 'faraday'
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec', require: false
   gem 'jazz_hands'
   gem 'factory_girl_rails', "~> 4.0"
+  gem 'vcr'
+  gem 'fakeweb'
 end

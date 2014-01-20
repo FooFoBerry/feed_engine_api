@@ -8,6 +8,8 @@ describe Commit do
   end
 
   describe "associations" do
+    use_vcr_cassette
+
     it "has repos" do
       commit = FactoryGirl.create(:commit, commit_hash: "bubar")
       repo = FactoryGirl.create(:repo, github_url: "gh.com/galvanize")
