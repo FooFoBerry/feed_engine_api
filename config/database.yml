@@ -20,6 +20,9 @@ test:
 
 production:
   adapter: postgresql
-  database: db/production.sqlite3
+  database: ffb_api_production
+  host: localhost
   pool: 5
+  username: ffb_api
+  password: 'api'
   timeout: 5000

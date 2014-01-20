@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Repos API" do
   describe "GET /projects/:project_id/repos" do
+    use_vcr_cassette
+
     it "returns all the project's repos" do
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/abc"
       repo2 = FactoryGirl.create :repo, github_url: "http://gh.com/123", gh_repo_id: 12345
@@ -22,6 +24,8 @@ describe "Repos API" do
   end
 
   describe "GET /projects/:project_id/repos/:id" do
+    use_vcr_cassette
+
     it "returns the right repo" do
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/1"
       project = FactoryGirl.create :project, name: "Biggy"
@@ -39,6 +43,8 @@ describe "Repos API" do
 
   describe "POST /projects/:project_id/repos" do
     describe "with valid params" do
+      use_vcr_cassette
+
       before :each do
         @project = FactoryGirl.create(:project)
         @repo_params = FactoryGirl.build(:repo).as_json
@@ -59,6 +65,8 @@ describe "Repos API" do
     end
 
     describe "with invalid params" do
+      use_vcr_cassette
+
       before :each do
         @project = FactoryGirl.create(:project)
         @repo_params = FactoryGirl.build(:repo, github_url: "").as_json

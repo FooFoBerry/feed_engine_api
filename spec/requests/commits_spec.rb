@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Commits API" do
   describe "GET /projects/:project_id/commits" do
+    use_vcr_cassette
+
     it "returns all the project's commits" do
       project = FactoryGirl.create :project
       repo = FactoryGirl.create :repo
@@ -22,6 +24,8 @@ describe "Commits API" do
   end
 
   describe "GET /projects/:project_id/commits/:id" do
+    use_vcr_cassette
+
     it "returns the right commit" do
       project = FactoryGirl.create :project
       repo = FactoryGirl.create :repo
@@ -39,6 +43,8 @@ describe "Commits API" do
   end
 
   describe "POST /commits" do
+    use_vcr_cassette
+
     describe "with valid params" do
       before :each do
         @repo = FactoryGirl.create(:repo, gh_repo_id: 15889813)
@@ -49,20 +55,28 @@ describe "Commits API" do
                           :repository => {
                             :id  => "15889813",
                             :url => "https://github.com/thewatts/testing-callbacks"
+                          },
+                          :author => {
+                            :name => "Foo Fo",
+                            :email => "foofo@example.com",
+                            :username => "foofo"
                           }
                         }
       end
 
-      it "responds with 201" do
-        post "/api/v1/commits", { :commit => @commit_params },
+      it "responds with 201 and assigns attributes" do
+        post "/api/v1/commits", @commit_params,
                                 { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
         expect(Commit.last.repo_id).to eq(@repo.id) # update controller to look up repo
+        expect(Commit.last.name).to eq("Foo Fo")
+        expect(Commit.last.email).to eq("foofo@example.com")
+        expect(Commit.last.username).to eq("foofo")
       end
 
       it "creates a new commit given valid data" do
         expect {
-          post "/api/v1/commits", { :commit => @commit_params },
+          post "/api/v1/commits", @commit_params,
                                   { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(1)
 
@@ -82,19 +96,24 @@ describe "Commits API" do
                           :repository => {
                             :id  => "15889813",
                             :url => "https://github.com/thewatts/testing-callbacks"
+                          },
+                          :author => {
+                            :name => "Foo Fo",
+                            :email => "foofo@example.com",
+                            :username => "foofo"
                           }
                         }
       end
 
       it "responds with 422" do
-        post "/api/v1/commits", { :commit => @commit_params },
+        post "/api/v1/commits", @commit_params,
                                 { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "rejects a new project given invalid data" do
         expect {
-          post "/api/v1/commits", { :commit => @commit_params },
+          post "/api/v1/commits", @commit_params,
                                   { "HTTP_ACCEPT" => "application/json" }
         }.to change{Commit.count}.by(0)
 

@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/srt32/FE?client_id=ENV%5B%27GH_APP_CLIENT_ID%27%5D&client_secret=ENV%5B%27GH_CLIENT_SECRET%27%5D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      user-agent:
+      - Faraday v0.9.0
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - '*/*'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - GitHub.com
+      date:
+      - Sun, 19 Jan 2014 04:44:09 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 404 Not Found
+      x-ratelimit-limit:
+      - '60'
+      x-ratelimit-remaining:
+      - '26'
+      x-ratelimit-reset:
+      - '1390106723'
+      x-github-media-type:
+      - github.beta
+      x-content-type-options:
+      - nosniff
+      access-control-allow-credentials:
+      - 'true'
+      access-control-expose-headers:
+      - ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval
+      access-control-allow-origin:
+      - '*'
+      x-github-request-id:
+      - 32C9BB81:7D28:A30887:52DB5819
+      content-encoding:
+      - gzip
+    body:
+      encoding: UTF-8
+      string: '{"message":"Not Found","documentation_url":"http://developer.github.com/v3"}'
+    http_version: '1.1'
+  recorded_at: Sun, 19 Jan 2014 04:44:08 GMT
+recorded_with: VCR 2.8.0

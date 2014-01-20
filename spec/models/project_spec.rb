@@ -20,6 +20,7 @@ describe Project do
   end
 
   describe "project_repos association" do
+    use_vcr_cassette
     it "has project_repos" do
       project = FactoryGirl.create(:project)
       repo = FactoryGirl.create(:repo, :github_url => "gh.com/kevin")
