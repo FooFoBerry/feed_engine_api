@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        project = Project.new(params[:project])
+        project = Project.new(project_params)
         if project.save
           render json: project, :status => 201
         else
@@ -25,6 +25,10 @@ module Api
       def project_errors(project)
         messages = project.errors.messages
         errors_hash = { "errors" => messages }
+      end
+
+      def project_params
+        params.require(:project).permit(:name, :user_id)
       end
 
     end

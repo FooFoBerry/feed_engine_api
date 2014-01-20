@@ -14,7 +14,7 @@ module Api
       end
 
       def create
-        repo = @project.repos.new(params[:repo])
+        repo = @project.repos.new(repo_params)
         if repo.save
           render json: repo, :status => 201
         else
@@ -31,6 +31,10 @@ module Api
       def repo_errors(repo)
         messages = repo.errors.messages
         errors_hash = { "errors" => messages }
+      end
+
+      def repo_params
+        params.require(:repo).permit(:github_url)
       end
 
     end
