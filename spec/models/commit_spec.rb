@@ -5,6 +5,10 @@ describe Commit do
     it "without a commit_hash" do
       FactoryGirl.build(:commit, :commit_hash => "").should_not be_valid
     end
+
+    it "without an email" do
+      FactoryGirl.build(:commit, :email => "").should_not be_valid
+    end
   end
 
   describe "associations" do
