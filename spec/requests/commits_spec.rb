@@ -55,15 +55,23 @@ describe "Commits API" do
                           :repository => {
                             :id  => "15889813",
                             :url => "https://github.com/thewatts/testing-callbacks"
+                          },
+                          :author => {
+                            :name => "Foo Fo",
+                            :email => "foofo@example.com",
+                            :username => "foofo"
                           }
                         }
       end
 
-      it "responds with 201" do
+      it "responds with 201 and assigns attributes" do
         post "/api/v1/commits", @commit_params,
                                 { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
         expect(Commit.last.repo_id).to eq(@repo.id) # update controller to look up repo
+        expect(Commit.last.name).to eq("Foo Fo")
+        expect(Commit.last.email).to eq("foofo@example.com")
+        expect(Commit.last.username).to eq("foofo")
       end
 
       it "creates a new commit given valid data" do
@@ -88,6 +96,11 @@ describe "Commits API" do
                           :repository => {
                             :id  => "15889813",
                             :url => "https://github.com/thewatts/testing-callbacks"
+                          },
+                          :author => {
+                            :name => "Foo Fo",
+                            :email => "foofo@example.com",
+                            :username => "foofo"
                           }
                         }
       end

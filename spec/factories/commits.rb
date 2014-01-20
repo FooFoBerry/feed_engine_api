@@ -4,5 +4,6 @@ FactoryGirl.define do
     message "I broke all the things"
     username "j3"
     repo_id 1
+    email "foofob@example.com"
   end
 end
