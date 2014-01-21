@@ -14,8 +14,8 @@ module Api
       end
 
       def create
-        repo = @project.repos.new(repo_params)
-        if repo.save
+        repo = @project.repos.create(repo_params)
+        if repo.valid?
           render json: repo, :status => 201
         else
           render json: repo_errors(repo), :status => 422

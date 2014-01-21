@@ -60,7 +60,7 @@ describe "Repos API" do
         expect {
           post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                  { "HTTP_ACCEPT" => "application/json" }
-        }.to change{Repo.count}.by(1)
+        }.to change{@project.repos.count}.by(1)
       end
     end
 
