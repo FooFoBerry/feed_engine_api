@@ -5,6 +5,7 @@ describe "Repos API" do
     use_vcr_cassette
 
     it "returns all the project's repos" do
+      pending
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/abc"
       repo2 = FactoryGirl.create :repo, github_url: "http://gh.com/123", gh_repo_id: 12345
       repo3 = FactoryGirl.create :repo, github_url: "http://gh.com/def", gh_repo_id: 23456
@@ -27,6 +28,7 @@ describe "Repos API" do
     use_vcr_cassette
 
     it "returns the right repo" do
+      pending
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/1"
       project = FactoryGirl.create :project, name: "Biggy"
       project.repos << repo
@@ -51,16 +53,43 @@ describe "Repos API" do
       end
 
       it "responds with 201" do
+      pending
         post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 201
       end
 
       it "create a new repo given valid data" do
+      pending
         expect {
           post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                  { "HTTP_ACCEPT" => "application/json" }
         }.to change{@project.repos.count}.by(1)
+      end
+
+      it "find an exisiting repo given full url" do
+        new_project = FactoryGirl.create(:project, :name => "New Project")
+        repo = FactoryGirl.create(:repo, :github_url => "rails/rails")
+        new_project.repos << repo
+        repo_params = FactoryGirl.build(:repo, :github_url => "http://github.com/rails/rails").as_json
+
+        expect {
+          post "/api/v1/projects/#{@project.id}/repos", { :repo => repo_params },
+            { "HTTP_ACCEPT" => "application/json" }
+        }.to change{@project.repos.count}.by(1)
+        expect(response.status).to eq 201
+        expect(JSON.parse(response.body)["github_url"]).to eq "rails/rails"
+        expect(@project.repos).should include(repo)
+      end
+
+      it "shouldn't change the Repo count if the Repo already exists" do
+        repo = FactoryGirl.create(:repo, :github_url => "rails/rails")
+        repo_params = FactoryGirl.build(:repo, :github_url => "http://github.com/rails/rails").as_json
+
+        expect {
+          post "/api/v1/projects/#{@project.id}/repos", { :repo => repo_params },
+            { "HTTP_ACCEPT" => "application/json" }
+        }.to change{Repo.count}.by(0)
       end
     end
 
@@ -73,12 +102,14 @@ describe "Repos API" do
       end
 
       it "responds with 422" do
+      pending
         post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                  { "HTTP_ACCEPT" => "application/json" }
         expect(response.status).to eq 422
       end
 
       it "rejects repo with invalid data" do
+      pending
         expect {
           post "/api/v1/projects/#{@project.id}/repos", { :repo => @repo_params },
                                                    { "HTTP_ACCEPT" => "application/json" }
