@@ -14,8 +14,8 @@ module Api
       end
 
       def create
-        params[:repo][:github_url].downcase!
-        repo = @project.repos.create(repo_params)
+        repo = Repo.find_or_create_by(repo_params)
+        @project.repos << repo if repo.valid? && !@project.repos.include?(repo)
         if repo.valid?
           render json: repo, :status => 201
         else
@@ -35,6 +35,8 @@ module Api
       end
 
       def repo_params
+        body, url = params[:repo][:github_url].downcase.split('/')[-2..-1]
+        params[:repo][:github_url] = "#{body}/#{url}"
         params.require(:repo).permit(:github_url)
       end
 
