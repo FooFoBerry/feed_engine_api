@@ -52,6 +52,7 @@ describe "Commits API" do
                         {
                           :commit_id => "96dd704dc8770624e5da9082498c531edf0aef4a",
                           :timestamp => "2014-01-13T18:45:47-08:00",
+                          :message => "update spec, duh",
                           :repository => {
                             :id  => "15889813",
                             :url => "https://github.com/thewatts/testing-callbacks"
@@ -72,6 +73,7 @@ describe "Commits API" do
         expect(Commit.last.name).to eq("Foo Fo")
         expect(Commit.last.email).to eq("foofo@example.com")
         expect(Commit.last.username).to eq("foofo")
+        expect(Commit.last.message).to eq("update spec, duh")
       end
 
       it "creates a new commit given valid data" do

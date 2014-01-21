@@ -9,6 +9,10 @@ describe Commit do
     it "without an email" do
       FactoryGirl.build(:commit, :email => "").should_not be_valid
     end
+
+    it "should have a message" do
+      FactoryGirl.build(:commit, :message => "yo G, I'm a commit!").should be_valid
+    end
   end
 
   describe "associations" do

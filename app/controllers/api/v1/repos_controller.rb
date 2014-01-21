@@ -14,6 +14,7 @@ module Api
       end
 
       def create
+        params[:repo][:github_url].downcase!
         repo = @project.repos.create(repo_params)
         if repo.valid?
           render json: repo, :status => 201
