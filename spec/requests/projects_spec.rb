@@ -17,6 +17,22 @@ describe "Projects API" do
       expect(project_titles).to match_array(["Meecrosoft",
                                              "Weendows"])
     end
+
+    it "returns all the projects with repos" do
+      project = FactoryGirl.create :project, name: "Meecrosoft", user_id: 123
+      project.repos.create(github_url: "foofoberry/costner")
+      project.repos.create(github_url: "rails/rails")
+
+      get "/api/v1/projects?user_id=123", {}, { "HTTP_ACCEPT" => "application/json" }
+
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      repos = body[0]["repos"]
+
+      expect(repos.first["github_url"]).to eq "foofoberry/costner"
+      expect(repos.last["github_url"]).to eq "rails/rails"
+    end
   end
 
   describe "GET /projects/:id" do
