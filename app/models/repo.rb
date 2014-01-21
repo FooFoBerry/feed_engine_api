@@ -9,7 +9,8 @@ class Repo < ActiveRecord::Base
   private
 
   def fetch_gh_repo_id
-    self.gh_repo_id = GithubAPI.new(self.github_url).gh_repo_id
+    gh_repo_id = GithubAPI.new(github_url).gh_repo_id
+    update_attributes(:gh_repo_id => gh_repo_id)
   end
 
 end

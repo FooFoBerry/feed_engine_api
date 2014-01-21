@@ -10,6 +10,7 @@ gem 'pg'
 gem 'faraday'
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'pusher'
 
 group :development, :test do
   gem 'better_errors'
