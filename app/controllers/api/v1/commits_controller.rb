@@ -5,12 +5,12 @@ module Api
       def index
         project = Project.find(params[:project_id])
         commits = project.repos.map(&:commits).flatten # :TODO: needs optimization
-        render json: commits
+        render json: commits.as_json
       end
 
       def show
         commit = Commit.find(params[:id])
-        render json: commit
+        render json: commit.as_json
       end
 
       def create
@@ -22,7 +22,7 @@ module Api
                                   :username => author[:username])
         if commit.save
           push(commit)
-          render json: commit, :status => 201
+          render json: commit.as_json, :status => 201
         else
           render json: commit_errors(commit), :status => 422
         end

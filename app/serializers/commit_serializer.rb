@@ -4,11 +4,11 @@ class CommitSerializer < ActiveModel::Serializer
              :name, :additions, :deletions
 
   def tiny_hash
-    commit_hash[0...6]
+    object.commit_hash[0...6]
   end
 
   def creation_date
-    created_at.to_i * 1000
+    object.created_at.to_i * 1000
   end
 
   def stats
@@ -16,7 +16,7 @@ class CommitSerializer < ActiveModel::Serializer
   end
 
   def repo_url
-    repo.github_url
+    object.repo.github_url
   end
 
   def additions

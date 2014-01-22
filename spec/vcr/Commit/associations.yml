@@ -21,7 +21,7 @@ http_interactions:
       server:
       - GitHub.com
       date:
-      - Sun, 19 Jan 2014 04:44:07 GMT
+      - Wed, 22 Jan 2014 15:41:16 GMT
       content-type:
       - application/json; charset=utf-8
       transfer-encoding:
@@ -33,9 +33,9 @@ http_interactions:
       x-ratelimit-limit:
       - '60'
       x-ratelimit-remaining:
-      - '29'
+      - '50'
       x-ratelimit-reset:
-      - '1390106723'
+      - '1390408550'
       x-github-media-type:
       - github.beta
       x-content-type-options:
@@ -48,12 +48,12 @@ http_interactions:
       access-control-allow-origin:
       - '*'
       x-github-request-id:
-      - 32C9BB81:7D27:5DD312:52DB5817
+      - 32C9BB81:65A5:1833123:52DFE69C
       content-encoding:
       - gzip
     body:
       encoding: UTF-8
       string: '{"message":"Not Found","documentation_url":"http://developer.github.com/v3"}'
     http_version: '1.1'
-  recorded_at: Sun, 19 Jan 2014 04:44:06 GMT
+  recorded_at: Wed, 22 Jan 2014 15:41:16 GMT
 recorded_with: VCR 2.8.0
