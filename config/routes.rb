@@ -1,9 +1,10 @@
 FoofoberryApi::Application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :projects,  only: [:index, :show, :create] do
-        resources :commits, only: [:index, :show]
-        resources :repos,   only: [:index, :show, :create]
+      resources :projects,           only: [:index, :show, :create] do
+        resources :commits,          only: [:index, :show]
+        resources :repos,            only: [:index, :show, :create]
+        resources :tracker_projects, only: [:index, :create]
       end
 
       resources :repos, only: [:show]
