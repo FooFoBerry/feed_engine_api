@@ -17,5 +17,23 @@ describe "Tracker Events API" do
 
       expect(tracker_events).to match_array([100])
     end
+
+  end
+  describe "POST /tracker_events" do 
+    it "creates a tracker event associated with the correct tracker project" do
+      tracker_project = FactoryGirl.create :tracker_project, pt_project_id: 654320
+      params = {
+        :story_url => "http://github.com",
+        :message   => "started story",
+        :kind      => "update story",
+        :user_name => "THE watts",
+        :story_id  => 45678,
+        :pt_tracker_id => 654320
+      }
+      post "/tracker_events", { tracker_event: params }, 
+                              { "HTTP_ACCEPT" => "application/json" }
+      expect(response.status).to eq 201
+
+    end 
   end
 end

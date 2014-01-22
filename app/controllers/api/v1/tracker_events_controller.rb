@@ -7,6 +7,7 @@ module Api
         tracker_events = project.tracker_events 
         render json: tracker_events, status: 200
       end
+      
     end
   end
 end
