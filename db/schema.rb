@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120005209) do
+ActiveRecord::Schema.define(version: 20140122075123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,5 +56,15 @@ ActiveRecord::Schema.define(version: 20140120005209) do
   end
 
   add_index "repos", ["gh_repo_id"], name: "index_repos_on_gh_repo_id", unique: true, using: :btree
+
+  create_table "tracker_events", force: true do |t|
+    t.string   "story_url"
+    t.string   "message"
+    t.string   "kind"
+    t.string   "user_name"
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
