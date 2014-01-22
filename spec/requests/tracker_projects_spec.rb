@@ -49,18 +49,18 @@ describe "Tracker Projects API" do
         @tracker_project_params = FactoryGirl.build(:tracker_project, :pt_project_id => nil).as_json
       end
 
-      it "responds with 418" do 
-         post "/api/v1/projects/#{@project.id}/tracker_projects",
+      it "responds with error messages and 418 status" do 
+         expect { 
+          post "/api/v1/projects/#{@project.id}/tracker_projects",
                                             { :tracker_project => @tracker_project_params },
-                                            { "HTTP_ACCEPT" => "application/json" }
-
+                                            { "HTTP_ACCEPT" => "application/json" } 
+         }.to change{ TrackerProject.count }.by(0)
         expect(response.status).to eq 418
 
+        body = JSON.parse(response.body)
+        body["errors"].should include("pt_project_id")
+        #expect(response.status).to eq 500
       end
     end
-
-
-
-
   end
 end

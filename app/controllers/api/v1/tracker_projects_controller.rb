@@ -14,7 +14,7 @@ module Api
         if tracker_project.save
           render nothing: true, status:  201
         else
-          render nothing: true, status: 418
+          render json: tracker_project_errors(tracker_project), status: 418
         end
       end
 
@@ -22,6 +22,11 @@ module Api
 
       def tracker_project_params
         params.require(:tracker_project).permit(:pt_project_id)
+      end
+
+      def tracker_project_errors(project)
+        messages = project.errors.messages
+        errors_hash = { "errors" => messages }
       end
 
     end
