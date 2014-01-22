@@ -5,6 +5,7 @@ FoofoberryApi::Application.routes.draw do
         resources :commits,          only: [:index, :show]
         resources :repos,            only: [:index, :show, :create]
         resources :tracker_projects, only: [:index, :create]
+        resources :tracker_events, only: [:index] 
       end
 
       resources :repos, only: [:show]

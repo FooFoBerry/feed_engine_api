@@ -1,10 +1,11 @@
 require 'spec_helper'
+
 describe "Tracker Events API" do
   describe "GET /projects/:project_id/tracker_events" do
     it "returns the project's tracker events" do
-      pending
       project = FactoryGirl.create :project, name: "Tracking Puffy"
-      tracker_event = FactoryGirl.create :tracker_event, project_id: project.id,
+      tracker_project = FactoryGirl.create :tracker_project, project_id: project.id
+      tracker_event = FactoryGirl.create :tracker_event, tracker_project_id: tracker_project.id,
                                                          story_id: 100
       tracker_event = FactoryGirl.create :tracker_event, story_id: 200
 
@@ -14,7 +15,7 @@ describe "Tracker Events API" do
       body = JSON.parse(response.body)
       tracker_events = body.map { |te| te["story_id"] }
 
-      expect(tracker_events).to match_array(["100"])
+      expect(tracker_events).to match_array([100])
     end
   end
 end
