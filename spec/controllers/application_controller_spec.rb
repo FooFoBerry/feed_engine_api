@@ -10,5 +10,4 @@ describe ApplicationController do
       expect(subject.current_user.id).to eq(123)
     end
   end
-
 end
