@@ -7,13 +7,14 @@ describe "Tracker Projects API" do
       project = FactoryGirl.create :project
       tracker_project = FactoryGirl.create :tracker_project, project_id: project.id
 
-      get "/api/v1/projects/#{project.id}/tracker_projects"
+      get "/api/v1/projects/#{project.id}/tracker_projects", {}, { "HTTP_ACCEPT" => "application/json" }
+
 
       expect(response.status).to eq 200
       body = JSON.parse(response.body)
       tracker_projects = body.map { |tracker_project| tracker_project["id"] }
 
-      expect(tracker_projects).to match_array(["#{tracker_project.id}"])
+      expect(tracker_projects).to match_array([tracker_project.id])
     end
   end
 end
