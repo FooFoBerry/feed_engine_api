@@ -5,7 +5,6 @@ describe "Repos API" do
     use_vcr_cassette
 
     it "returns all the project's repos" do
-      pending
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/abc"
       repo2 = FactoryGirl.create :repo, github_url: "http://gh.com/123", gh_repo_id: 12345
       repo3 = FactoryGirl.create :repo, github_url: "http://gh.com/def", gh_repo_id: 23456
@@ -28,7 +27,6 @@ describe "Repos API" do
     use_vcr_cassette
 
     it "returns the right repo" do
-      pending
       repo = FactoryGirl.create :repo, github_url: "http://gh.com/1"
       project = FactoryGirl.create :project, name: "Biggy"
       project.repos << repo
