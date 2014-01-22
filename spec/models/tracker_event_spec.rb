@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe TrackerEvent do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "it should not be valid" do 
+    it "without a pivotal story id" do
+      FactoryGirl.build(:tracker_event, :story_id => nil).should_not be_valid
+    end
+  end
 end
