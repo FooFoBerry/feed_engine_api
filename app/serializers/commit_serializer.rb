@@ -12,7 +12,13 @@ class CommitSerializer < ActiveModel::Serializer
   end
 
   def stats
-    @stats ||= Octokit.commit(repo_url, commit_hash).stats
+    @stats ||= client.commit(repo_url, commit_hash).stats
+  end
+
+  def client
+    @client ||= Octokit::Client.new(
+      :client_id => "b38f5e35c8e5af8ec3e2",
+      :client_secret => "8fcb53f99a91fe0e1ef7c910ea92d51d20be6fff")
   end
 
   def repo_url
