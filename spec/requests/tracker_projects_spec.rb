@@ -39,7 +39,9 @@ describe "Tracker Projects API" do
         post "/api/v1/projects/#{@project.id}/tracker_projects",
                                             { :tracker_project => @tracker_project_params },
                                             { "HTTP_ACCEPT" => "application/json" }
-              }.to change{ @project.tracker_projects.count }.by(1) 
+              }.to change{ @project.tracker_projects.count }.by(1)
+        body = JSON.parse(response.body)
+        body["pt_project_id"].should eq 123456 
       end
     end
 

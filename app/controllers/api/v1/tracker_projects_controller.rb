@@ -12,7 +12,7 @@ module Api
         project = Project.find(params[:project_id])
         tracker_project = project.tracker_projects.new(tracker_project_params)
         if tracker_project.save
-          render nothing: true, status:  201
+          render json: tracker_project, status:  201
         else
           render json: tracker_project_errors(tracker_project), status: 418
         end
