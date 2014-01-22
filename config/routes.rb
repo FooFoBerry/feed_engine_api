@@ -10,6 +10,7 @@ FoofoberryApi::Application.routes.draw do
 
       resources :repos, only: [:show]
       resources :commits, only: [:create]
+      resources :tracker_events, only: [:create]
     end
   end
 end
