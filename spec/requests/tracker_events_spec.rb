@@ -17,8 +17,8 @@ describe "Tracker Events API" do
 
       expect(tracker_events).to match_array([100])
     end
-
   end
+
   describe "POST /tracker_events" do 
     before :each do 
       @tracker_project = FactoryGirl.create :tracker_project, pt_project_id: 654320
@@ -39,5 +39,12 @@ describe "Tracker Events API" do
       expect(response.status).to eq 201 
     end 
 
+    it "does not create with invalid params" do 
+      params = @params.merge(:story_id => nil)
+      expect { post "/api/v1/tracker_events", { tracker_event: params }, 
+                              { "HTTP_ACCEPT" => "application/json" } 
+      }.to change{ @tracker_project.tracker_events.count }.by(0)
+      expect(response.status).to eq 418
+    end
   end
 end
