@@ -11,6 +11,7 @@ gem 'faraday'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'pusher'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'better_errors'
