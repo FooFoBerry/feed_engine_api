@@ -21,4 +21,5 @@ group :development, :test do
   gem 'factory_girl_rails', "~> 4.0"
   gem 'vcr'
   gem 'fakeweb'
+  gem 'coveralls', require: false
 end
