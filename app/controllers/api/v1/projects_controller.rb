@@ -3,6 +3,7 @@ module Api
     class ProjectsController < ApplicationController
 
       def index
+        logger.info(" ------------------------- PAGES!")
         user_id = params[:user_id]
         render json: Project.where(:user_id => user_id).as_json(:include => :repos)
       end
