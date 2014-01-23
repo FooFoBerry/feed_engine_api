@@ -12,7 +12,7 @@ module Api
         tracker_project = TrackerProject.find_by(:pt_project_id => params[:tracker_event][:pt_project_id])
         tracker_event = tracker_project.tracker_events.new(tracker_event_params)
         if tracker_event.save
-          push(tracker)
+          push(tracker_event)
           render json: tracker_event, status: 201
         else
           render json: tracker_event_errors(tracker_event), status: 418
@@ -37,12 +37,11 @@ module Api
         errors_hash = {"errors" => messages}
       end
 
-      def push(tracker)
-        data = TrackerEventSerializer.new tracker
-        tracker.tracker_project.projects.map(&:id).each do |id|
-          Pusher["project_#{id}"].trigger("tracker_notification",
-                                          :data => data.as_json)
-        end
+      def push(tracker_event)
+        data       = TrackerEventSerializer.new tracker_event
+        project_id = tracker_event.tracker_project.project.id
+        Pusher["project_#{project_id}"].trigger("tracker_notification",
+          :data => data.as_json)
       end
     end
   end
