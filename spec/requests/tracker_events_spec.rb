@@ -33,11 +33,12 @@ describe "Tracker Events API" do
     end
 
     it "creates a tracker event associated with the correct tracker project" do
+      FactoryGirl.create(:project, :id => 1)
       expect { post "/api/v1/tracker_events", { tracker_event: @params },
                               { "HTTP_ACCEPT" => "application/json" }
       }.to change{ @tracker_project.tracker_events.count }.by(1)
       expect(response.status).to eq 201
-    end 
+    end
 
     it "does not create with invalid params" do
       params = @params.merge(:story_id => nil)
