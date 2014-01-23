@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122200415) do
+ActiveRecord::Schema.define(version: 20140123074525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(version: 20140122200415) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tracker_project_id"
+    t.string   "change_type"
+    t.string   "story_title"
+    t.string   "user_initials"
   end
 
   add_index "tracker_events", ["tracker_project_id"], name: "index_tracker_events_on_tracker_project_id", using: :btree

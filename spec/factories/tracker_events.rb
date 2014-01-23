@@ -5,5 +5,8 @@ FactoryGirl.define do
     kind "story_created"
     user_name "bigfo"
     story_id 1
+    change_type "create story"
+    story_title "awesomes"
+    user_initials "FB"
   end
 end
