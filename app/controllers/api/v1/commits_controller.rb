@@ -46,7 +46,8 @@ module Api
       def push(commit)
         data = CommitSerializer.new commit
         commit.repo.projects.map(&:id).each do |id|
-          Pusher["project_#{id}"].trigger("github_notification", :data => data.as_json)
+          Pusher["project_#{id}"].trigger("github_notification",
+                                          :data => data.as_json)
         end
       end
 
