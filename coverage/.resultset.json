@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/controllers/api/v1/tracker_events_controller.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/controllers/api/v1/tracker_events_controller.rb": [
         1,
         1,
         1,
@@ -43,12 +43,12 @@
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/controllers/application_controller.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/controllers/application_controller.rb": [
         1,
         1,
         null,
         1,
-        7,
+        8,
         null,
         null,
         1,
@@ -57,14 +57,14 @@
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/commit.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/commit.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/github_api.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/github_api.rb": [
         1,
         null,
         1,
@@ -98,13 +98,13 @@
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/project_repo.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/project_repo.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/project.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/project.rb": [
         1,
         1,
         1,
@@ -113,7 +113,7 @@
         1,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/repo.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/repo.rb": [
         1,
         1,
         1,
@@ -142,116 +142,40 @@
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/tracker_event.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/tracker_event.rb": [
         1,
         1,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/tracker_project.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/tracker_project.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/models/user.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/models/user.rb": [
         1,
         null,
         1,
         null,
         1,
-        7,
+        8,
         null,
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/controllers/api/v1/repos_controller.rb": [
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/serializers/tracker_event_serializer.rb": [
         1,
         1,
         null,
         null,
         1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        2,
-        2,
-        2,
-        2,
-        null,
-        0,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        4,
-        null,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        1,
-        2,
-        2,
-        2,
-        null,
-        null,
-        null,
+        3,
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/controllers/api/v1/projects_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        2,
-        2,
-        2,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        4,
-        4,
-        2,
-        null,
-        2,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        2,
-        2,
-        null,
-        null,
-        1,
-        4,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/controllers/api/v1/tracker_projects_controller.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/controllers/api/v1/tracker_projects_controller.rb": [
         1,
         1,
         1,
@@ -287,7 +211,7 @@
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/controllers/api/v1/commits_controller.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/controllers/api/v1/commits_controller.rb": [
         1,
         1,
         1,
@@ -344,7 +268,7 @@
         null,
         null
       ],
-      "/Users/Simon/Projects/gSchool/rails_apps/feed_engine/feed_engine_api/app/serializers/commit_serializer.rb": [
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/serializers/commit_serializer.rb": [
         1,
         1,
         null,
@@ -380,8 +304,94 @@
         0,
         null,
         null
+      ],
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/controllers/api/v1/projects_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        4,
+        4,
+        2,
+        null,
+        2,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/watts/code/gSchool/feedengine/feed_engine_api/app/controllers/api/v1/repos_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        4,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        2,
+        2,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
       ]
     },
-    "timestamp": 1390463470
+    "timestamp": 1390466186
   }
 }
