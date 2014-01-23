@@ -21,7 +21,14 @@ module Api
       private
 
       def tracker_event_params
-        params.require(:tracker_event).permit(:story_url, :message, :kind, :user_name, :story_id)
+        params.require(:tracker_event).permit(:story_url,
+                                              :message,
+                                              :kind,
+                                              :user_name,
+                                              :story_id,
+                                              :change_type,
+                                              :story_title,
+                                              :user_initials)
       end
 
       def tracker_event_errors(tracker)
